@@ -22,25 +22,43 @@ const App = () => {
   const { isAuthenticated, setIsAuthenticated, admin, setAdmin } =
     useContext(Context);
 
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://doctorathomeserver.vercel.app/api/v1/user/admin/me",
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
+  //       alert(setIsAuthenticated(true), " ",setAdmin(response.data.user);)
+  //       setIsAuthenticated(true);
+  //       setAdmin(response.data.user);
+  //     } catch (error) {
+  //       setIsAuthenticated(false);
+  //       setAdmin({});
+  //     }
+  //   };
+  //   fetchUser();
+  // }, [isAuthenticated]);
+
+
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          "https://doctorathomeserver.vercel.app/api/v1/user/admin/me",
-          {
-            withCredentials: true,
-          }
-        );
-        alert(setIsAuthenticated(true), " ",setAdmin(response.data.user);)
-        setIsAuthenticated(true);
-        setAdmin(response.data.user);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setAdmin({});
-      }
-    };
-    fetchUser();
-  }, [isAuthenticated]);
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        "https://doctorathomeserver.vercel.app/api/v1/user/admin/me",
+        { withCredentials: true }
+      );
+      setIsAuthenticated(true);
+      setAdmin(response.data.user);
+    } catch (error) {
+      setIsAuthenticated(false);
+      setAdmin({});
+    }
+  };
+  fetchUser();
+}, []); // ✅ correct
 
   return (
     <Router>

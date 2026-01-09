@@ -31,6 +31,7 @@ const App = () => {
             withCredentials: true,
           }
         );
+        alert(setIsAuthenticated(true), " ",setAdmin(response.data.user);)
         setIsAuthenticated(true);
         setAdmin(response.data.user);
       } catch (error) {
